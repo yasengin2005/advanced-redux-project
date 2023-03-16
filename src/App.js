@@ -7,24 +7,25 @@ import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
 import { sendCartData, fetchCartData } from "./store/cart-actions";
 
-let isInitial = true;
+let isInitial = true; // this is a hack to prevent the useEffect() from running on the first render cycle
 
 function App() {
   const dispatch = useDispatch();
-  const showCart = useSelector((state) => state.ui.cartIsVisible);
+  const showCart = useSelector((state) => state.ui.cartIsVisible); 
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
+ 
 
-  useEffect(() => {
+  useEffect(() => { 
     dispatch(fetchCartData());
-  }, [dispatch]);
+  }, [dispatch]); // dispatch is a dependency because it is a function that is created by React and it is not guaranteed to be the same function on every render cycle
 
-  useEffect(() => {
+  useEffect(() => { 
     if (isInitial) {
       isInitial = false;
       return;
     }
-    if (cart.changed) {
+    if (cart.changed) { 
       dispatch(
         sendCartData(cart)
       );
