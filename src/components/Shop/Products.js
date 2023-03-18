@@ -28,21 +28,23 @@ const DUMMY_PRODUCTS = [
   },
 ];
 
+const productsList = DUMMY_PRODUCTS.map((product) => (
+  <ProductItem
+    key={product.id}
+    id={product.id}
+    title={product.title}
+    price={product.price}
+    description={product.description}
+  />
+));
+
 
 const Products = (props) => {
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
       <ul>
-        {DUMMY_PRODUCTS.map((product) => (
-        <ProductItem
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          description={product.description}
-        />
-        ))}
+        {productsList}
       </ul>
     </section>
   );

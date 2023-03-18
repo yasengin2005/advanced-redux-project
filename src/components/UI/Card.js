@@ -1,10 +1,11 @@
 import classes from './Card.module.css';
 
 const Card = (props) => {
+
+  const cardClasses = `${classes.card} ${props.className ? props.className : ''}`
+  
   return (
-    <section
-      className={`${classes.card} ${props.className ? props.className : ''}`}
-    >
+    <section className={cardClasses}>
       {props.children}
     </section>
   );

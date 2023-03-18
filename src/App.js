@@ -10,11 +10,10 @@ import { sendCartData, fetchCartData } from "./store/cart-actions";
 let isInitial = true; // this is a hack to prevent the useEffect() from running on the first render cycle
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const showCart = useSelector((state) => state.ui.cartIsVisible); 
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
- 
 
   useEffect(() => { 
     dispatch(fetchCartData());
@@ -26,9 +25,7 @@ function App() {
       return;
     }
     if (cart.changed) { 
-      dispatch(
-        sendCartData(cart)
-      );
+      dispatch(sendCartData(cart));
     }
   }, [cart, dispatch]);
 

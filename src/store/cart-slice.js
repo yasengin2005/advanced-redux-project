@@ -19,9 +19,9 @@ const cartSlice = createSlice({
         state.items.push({
           id: newItem.id,
           title: newItem.title,
-          quantity: 1,
           price: newItem.price,
           totalPrice: newItem.price,
+          quantity: 1,
         });
       } else {
         existingItem.quantity++;
@@ -44,16 +44,12 @@ const cartSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCartData.pending, (state) => {
-        state.changed = false;
-      })
-      .addCase(fetchCartData.rejected, (state) => {
+      .addCase(fetchCartData, (state) => {
         state.changed = false;
       })
       .addCase(fetchCartData.fulfilled, (state, action) => {
         state.items = action.payload.items || [];
         state.totalQuantity = action.payload.totalQuantity || 0;
-        state.changed = false
       })
   },
 });
