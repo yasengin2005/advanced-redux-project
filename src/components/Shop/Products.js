@@ -5,14 +5,26 @@ const DUMMY_PRODUCTS = [
   {
     id: 'p1',
     price: 6,
-    title: 'My First Book',
+    title: 'Sherlock Holmes',
     description: 'The first book I ever wrote',
   },
   {
     id: 'p2',
     price: 5,
-    title: 'My Second Book',
+    title: 'Tom Sawyer',
     description: 'The second book I ever wrote',
+  },
+  {
+    id: 'p3',
+    price: 4,
+    title: 'Huckleberry Finn',
+    description: 'The third book I ever wrote',
+  },
+  {
+    id: 'p4',
+    price: 3,
+    title: 'The Prince and the Pauper',
+    description: 'The fourth book I ever wrote',
   },
 ];
 

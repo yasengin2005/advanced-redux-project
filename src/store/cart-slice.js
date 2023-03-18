@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCartData } from './cart-actions';
+//sendCartData is not used in this file, but it is used in the cart-actions.js file
  
 const cartSlice = createSlice({
   name: "cart",
@@ -17,17 +18,16 @@ const cartSlice = createSlice({
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
-          price: newItem.price,
-          quantity: 1,
-          totalPrice: newItem.price,
           title: newItem.title,
+          quantity: 1,
+          price: newItem.price,
+          totalPrice: newItem.price,
         });
       } else {
         existingItem.quantity++;
         existingItem.totalPrice += newItem.price;
       }
     },
-
     removeItemFromCart(state, action) {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
@@ -40,20 +40,21 @@ const cartSlice = createSlice({
         existingItem.totalPrice -= existingItem.price;
       }
     }
-
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartData.pending, (state) => {
         state.changed = false;
       })
       .addCase(fetchCartData.rejected, (state) => {
-      state.changed = false;
+        state.changed = false;
       })
       .addCase(fetchCartData.fulfilled, (state, action) => {
-      state.items = action.payload.items || [];
-      state.totalQuantity = action.payload.totalQuantity || 0;
-      state.changed = false});
+        state.items = action.payload.items || [];
+        state.totalQuantity = action.payload.totalQuantity || 0;
+        state.changed = false
+      })
   },
 });
 

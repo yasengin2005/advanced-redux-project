@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCartData, sendCartData } from "./cart-actions";
+import { fetchCartData, sendCartData } from "./cart-actions"; 
+
 
 const uiSlice = createSlice({
   name: "ui",
@@ -18,7 +19,7 @@ const uiSlice = createSlice({
           message: "Fetching Books ...",
         };
       })
-      .addCase(fetchCartData.fulfilled, (state, action) => {
+      .addCase(fetchCartData.fulfilled, (state) => {
         state.notification = {
           status: "success",
           title: "Success!",
@@ -50,7 +51,7 @@ const uiSlice = createSlice({
         state.notification = {
           status: "error",
           title: "Error!",
-          message: "Failed to send cart data!",
+          message: action.error.message || "Failed to send cart data!",
         };
       });
   },
